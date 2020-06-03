@@ -7,10 +7,13 @@ import AppIndex from "@/components/home/AppIndex"
 Vue.use(Router)
 
 export default new Router({
+  // 路由模式：history模式
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'HelloWorld',
+      redirect: '/login',
       component: HelloWorld
     },
     {
@@ -21,7 +24,10 @@ export default new Router({
     {
       path: '/index',
       name: 'AppIndex',
-      component: AppIndex
+      component: AppIndex,
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 })

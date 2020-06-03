@@ -20,12 +20,13 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: "Login",
   data () {
     return {
       form: {
-        username: '',
+        userName: '',
         password: ''
       }
     }
@@ -33,11 +34,12 @@ export default {
   mounted () {
   },
   methods: {
+    ...mapActions(['setUser']),
     login () {
       this.$axios.post('/login', {userName: this.form.userName, password: this.form.password}).then(res => {
-          debugger
-        res = res.data;
+        res = res.data
         if (res && res.code === 200) {
+          this.setUser(this.form)
           this.$router.push({path: '/index'})
         }
       }).catch(res => {
