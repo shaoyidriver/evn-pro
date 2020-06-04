@@ -10,14 +10,14 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    editUser (state,{user}) {
+    editUser (state, {user}) {
       state.user = user
       localStorage.setItem('user', JSON.stringify(user))
     }
   },
   actions: {
     setUser ({ commit }, user) {
-      commit('editUser',{user})
+      commit('editUser', {user})
     }
   }
 })

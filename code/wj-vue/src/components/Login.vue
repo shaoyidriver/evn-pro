@@ -41,6 +41,8 @@ export default {
         if (res && res.code === 200) {
           this.setUser(this.form)
           this.$router.push({path: '/index'})
+        } else {
+          this.$message.error(res.msg)
         }
       }).catch(res => {
       })
