@@ -38,9 +38,15 @@
 <script>
     export default {
         name: 'AsideMenu',
+        data () {
+            return {
+                cid: ''
+            }
+        },
         methods: {
             handleSelect (key, keyPath) {
-            // debugger
+                this.cid = key
+                this.$emit('indexSelect')
             }
         }
     }

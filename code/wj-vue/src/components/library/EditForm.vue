@@ -61,7 +61,7 @@
                     cover: '',
                     abs: '',
                     category: {
-                        id: '',
+                        id: null,
                         name: ''
                     }
                 },
