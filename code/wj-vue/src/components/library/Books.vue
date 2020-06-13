@@ -1,9 +1,10 @@
 <template>
   <div>
-    <el-row style="height: 840px;">
+    <el-row style="min-height: 720px;">
       <!--<search-bar></search-bar>-->
+      <search-bar ref="searchBar" @onSearch="searchResult"></search-bar>
       <el-tooltip effect="dark" placement="right"
-                  v-for="item in books"
+                  v-for="item in books.splice((currentPage-1)*pagesize,currentPage*pagesize)"
                   :key="item.id">
         <p slot="content" style="font-size: 14px;margin-bottom: 6px;">{{item.title}}</p>
         <p slot="content" style="font-size: 13px;margin-bottom: 6px">
@@ -37,23 +38,51 @@
 </template>
 
 <script>
-    export default {
-        name: 'Books',
-        data () {
-            return {
-                books: [
-                    {
-                        cover: 'https://i.loli.net/2019/04/10/5cada7e73d601.jpg',
-                        title: '三体',
-                        author: '刘慈欣',
-                        date: '2019-05-05',
-                        press: '重庆出版社',
-                        abs: '文化大革命如火如荼进行的同时。军方探寻外星文明的绝秘计划“红岸工程”取得了突破性进展。但在按下发射键的那一刻，历经劫难的叶文洁没有意识到，她彻底改变了人类的命运。地球文明向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰……'
-                    }
-                ]
-            }
-        }
-    }
+  import SearchBar from "./SearchBar";
+  import EditForm from "./EditForm";
+  export default {
+      components: {SearchBar,EditForm},
+      name: 'Books',
+      data() {
+          return {
+              books: [
+                  {
+                      cover: 'https://i.loli.net/2019/04/10/5cada7e73d601.jpg',
+                      title: '三体',
+                      author: '刘慈欣',
+                      date: '2019-05-05',
+                      press: '重庆出版社',
+                      abs: '文化大革命如火如荼进行的同时。军方探寻外星文明的绝秘计划“红岸工程”取得了突破性进展。但在按下发射键的那一刻，历经劫难的叶文洁没有意识到，她彻底改变了人类的命运。地球文明向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰……'
+                  }
+              ],
+              currentPage: 1,
+              pagesize: 17
+          }
+      },
+      mounted() {
+          this.loadBooks()
+      },
+      methods: {
+          loadBooks () {
+              var _this = this
+              this.$axios.get('/books').then(resp => {
+                  if (resp && resp.status === 200) {
+                      _this.books = resp.data
+                  }
+              })
+          },
+          searchResult () {
+              var _this = this
+              this.$axios
+                  .get('/search?keywords=' + this.$refs.searchBar.keywords, {
+                  }).then(resp => {
+                  if (resp && resp.status === 200) {
+                      _this.books = resp.data
+                  }
+              })
+          },
+      }
+  }
 </script>
 
 <style scoped>

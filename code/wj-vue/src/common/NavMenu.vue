@@ -17,34 +17,35 @@
 </template>
 
 <script>
-export default {
-  name: "NavMenu",
-  computed: {
-      currentPath () {
-          return this.$route.path
-      }
-  },
-  data () {
-    return {
-      navList: [
-        {path: '/index', name: '首页'},
-        {path: '/jotter', name: '笔记本'},
-        {path: '/library', name: '图书馆'},
-        {path: '/admin', name: '个人中心'}
-      ]
+    export default {
+        name: "NavMenu",
+        computed: {
+            currentPath() {
+                return this.$route.path
+            }
+        },
+        data() {
+            return {
+                navList: [
+                    {path: '/index', name: '首页'},
+                    {path: '/jotter', name: '笔记本'},
+                    {path: '/library', name: '图书馆'},
+                    {path: '/admin', name: '个人中心'}
+                ]
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+            }
+        }
     }
-  },
-  methods: {
-      handleSelect (key, keyPath) {
-      }
-  }
-}
 </script>
 
 <style scoped>
-  a{
+  a {
     text-decoration: none;
   }
+
   span {
     pointer-events: none;
   }

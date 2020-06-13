@@ -12,10 +12,10 @@
 
 <script>
 import AsideMenu from "@/components/library/AsideMenu"
-import Books from "@/components/library/Books";
+import Books from "@/components/library/Books"
 export default {
   name: "index",
-  components: {AsideMenu,Books}
+  components: {AsideMenu, Books}
 }
 </script>
 

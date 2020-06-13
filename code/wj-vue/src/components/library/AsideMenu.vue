@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    class="categories"
+    class=""
     default-active="0"
     @select="handleSelect"
     active-text-color="red">
@@ -40,7 +40,7 @@
         name: 'AsideMenu',
         methods: {
             handleSelect (key, keyPath) {
-            debugger
+            // debugger
             }
         }
     }
