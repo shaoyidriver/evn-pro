@@ -5,6 +5,7 @@
       placeholder="通过书名或作者搜索..."
       prefix-icon="el-icon-search"
       size="small"
+      clearable
       style="width: 400px;margin-right: 10px"
       v-model="keywords">
     </el-input>

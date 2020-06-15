@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row style="height: 840px;">
+    <el-row style="max-height: 840px;">
       <search-bar @onSearch="searchResult" ref="searchBar"></search-bar>
       <el-tooltip effect="dark" placement="right"
                   v-for="item in books.slice((currentPage-1)*pagesize,currentPage*pagesize)"
@@ -72,7 +72,7 @@
             searchResult() {
                 var _this = this
                 this.$axios
-                    .get('/search?keywords=' + this.$refs.searchBar.keywords, {}).then(resp => {
+                    .get('/search?keyWords=' + this.$refs.searchBar.keywords, {}).then(resp => {
                     if (resp && resp.status === 200) {
                         _this.books = resp.data
                     }

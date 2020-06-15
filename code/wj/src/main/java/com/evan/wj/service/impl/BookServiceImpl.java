@@ -24,6 +24,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<Book> search(String keyWords) {
+        return bookDao.findAllByTitleLikeOrAuthorLike("%"+keyWords+"%","%"+keyWords+"%");
+    }
+
+    @Override
     public void addOrUpdate(Book book) {
         bookDao.save(book);
     }
